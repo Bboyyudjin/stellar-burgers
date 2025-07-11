@@ -41,9 +41,10 @@ describe('Конструктор бургера',() => {
   describe('Работа модальных окон',()=> {
     it('Проверка открытия модального окна', ()=> {
       cy.contains('Детали ингредиента').should('not.exist')
+      cy.contains('Биокотлета из марсианской Магнолии').should('not.be.visible')
       cy.get(ingredientsMains).find('li').contains('Биокотлета из марсианской Магнолии').click()
       cy.contains('Детали ингредиента').should('exist')
-      cy.contains('Биокотлета из марсианской Магнолии').should('exist')
+      cy.contains('Биокотлета из марсианской Магнолии').should('be.visible')
     })
 
     it('Проверка закрытия модального окна через кнопку', ()=> {

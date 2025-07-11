@@ -21,7 +21,7 @@ type TUserState = {
   error: string | undefined;
 };
 
-const initialState: TUserState = {
+export const initialState: TUserState = {
   user: null,
   isAuthChecked: false,
   isAuthenticated: false,

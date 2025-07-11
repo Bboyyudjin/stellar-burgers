@@ -8,7 +8,7 @@ type TBurgerConstructorState = {
   ingredients: TConstructorIngredient[];
 };
 
-const initialState: TBurgerConstructorState = {
+export const initialState: TBurgerConstructorState = {
   bun: null,
   ingredients: []
 };
@@ -33,7 +33,7 @@ export const burgerConstructorSlice = createSlice({
 
     removeIngredient: (state, action: PayloadAction<string>) => {
       state.ingredients = state.ingredients.filter(
-        (item) => item.id !== action.payload
+        (item) => item._id !== action.payload
       );
     },
 

@@ -20,16 +20,19 @@ describe('Конструктор бургера',() => {
   
   describe('Добавление ингредиентов',() => {
     it('Проверка добавления булки', ()=> {
+      cy.get(burgerConstructor).contains('Краторная булка N-200i').should('not.exist')
       cy.get(ingredientsBuns).contains('Добавить').click(),
       cy.get(burgerConstructor).contains('Краторная булка N-200i').should('exist')
     })
 
     it('Проверка добавления начинки', ()=> {
+      cy.get(burgerConstructor).contains('Биокотлета из марсианской Магнолии').should('not.exist')
       cy.get(ingredientsMains).contains('Добавить').click(),
       cy.get(burgerConstructor).contains('Биокотлета из марсианской Магнолии').should('exist')
     })
 
     it('Проверка добавления соуса', ()=> {
+      cy.get(burgerConstructor).contains('Соус Spicy-X').should('not.exist')
       cy.get(ingredientsSauces).contains('Добавить').click(),
       cy.get(burgerConstructor).contains('Соус Spicy-X').should('exist')
     })
@@ -37,11 +40,14 @@ describe('Конструктор бургера',() => {
 
   describe('Работа модальных окон',()=> {
     it('Проверка открытия модального окна', ()=> {
-      cy.get(ingredientsBuns).find('li').click()
+      cy.contains('Детали ингредиента').should('not.exist')
+      cy.get(ingredientsMains).find('li').contains('Биокотлета из марсианской Магнолии').click()
       cy.contains('Детали ингредиента').should('exist')
+      cy.contains('Биокотлета из марсианской Магнолии').should('exist')
     })
 
     it('Проверка закрытия модального окна через кнопку', ()=> {
+      cy.contains('Детали ингредиента').should('not.exist')
       cy.get(ingredientsBuns).find('li').click()
       cy.contains('Детали ингредиента').should('exist')
       cy.get(closeButton).click()
@@ -49,6 +55,7 @@ describe('Конструктор бургера',() => {
     })
 
     it('Проверка закрытия модального окна через оверлэй', ()=> {
+      cy.contains('Детали ингредиента').should('not.exist')
       cy.get(ingredientsBuns).find('li').click()
       cy.contains('Детали ингредиента').should('exist')
       cy.get(modalOverlay).click({force:true})
